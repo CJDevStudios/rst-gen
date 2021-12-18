@@ -62,7 +62,7 @@ class Table implements ComponentInterface
 
         foreach ($this->header_rows as $header_row) {
             foreach ($header_row->getHeaders() as $col => $header) {
-                $max_col_lengths[$col] = max($max_col_lengths[$col] ?? 0, strlen($header));
+                $max_col_lengths[$col] = $this->getMaxCellLengthForColumn($col);
             }
         }
 

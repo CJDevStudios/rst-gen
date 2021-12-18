@@ -16,9 +16,9 @@ class TableTest extends TestCase
         $table->addHeaderRow(new HeaderRow(['Column 1', 'Column 2', 'Column 3 - Test']));
         $table->addBodyRow(new Row(['Cell 1', 'Cell 234', 'Cell 3']));
         $table->addBodyRow(new Row(['Cell 12', 'Cell 23', 'Cell 34533']));
-        $table->addBodyRow(new Row(['Cell 123', 'Cell 2', 'Cell 34']));
+        $table->addBodyRow(new Row(['Cell 34533', 'Cell 2', 'Cell 34']));
 
-        $this->assertEquals(8, $table->getMaxCellLengthForColumn(0));
+        $this->assertEquals(10, $table->getMaxCellLengthForColumn(0));
         $this->assertEquals(8, $table->getMaxCellLengthForColumn(1));
         $this->assertEquals(15, $table->getMaxCellLengthForColumn(2));
     }
@@ -29,17 +29,17 @@ class TableTest extends TestCase
         $table->addHeaderRow(new HeaderRow(['Column 1', 'Column 2', 'Column 3 - Test']));
         $table->addBodyRow(new Row(['Cell 1', 'Cell 234', 'Cell 3']));
         $table->addBodyRow(new Row(['Cell 12', 'Cell 23', 'Cell 34533']));
-        $table->addBodyRow(new Row(['Cell 123', 'Cell 2', 'Cell 34']));
+        $table->addBodyRow(new Row(['Cell 34533', 'Cell 2', 'Cell 34']));
 
         $output = $table->renderSimple();
         $expected = <<<EOT
-========  ========  ===============
-Column 1  Column 2  Column 3 - Test
---------  --------  ---------------
-Cell 1    Cell 234  Cell 3
-Cell 12   Cell 23   Cell 34533
-Cell 123  Cell 2    Cell 34
-========  ========  ===============
+==========  ========  ===============
+Column 1    Column 2  Column 3 - Test
+----------  --------  ---------------
+Cell 1      Cell 234  Cell 3
+Cell 12     Cell 23   Cell 34533
+Cell 34533  Cell 2    Cell 34
+==========  ========  ===============
 EOT;
 
         $this->assertEquals($expected, $output);
