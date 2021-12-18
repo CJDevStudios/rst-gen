@@ -67,21 +67,21 @@ class Table implements ComponentInterface
         }
 
         // Append '=' character for each max_col_lengths value (repeat) with two spaces in between each column
-        $output .= implode('  ', array_map(function ($length) {
+        $output .= implode('  ', array_map(static function ($length) {
             return str_repeat('=', $length);
         }, $max_col_lengths));
 
         $output .= "\n";
 
         // append headers; aligning each header to the start of the column
-        $output .= implode('  ', array_map(function ($header, $length) {
+        $header_row = implode('  ', array_map(static function ($header, $length) {
             return str_pad($header, $length, ' ', STR_PAD_RIGHT);
         }, $this->header_rows[0]->getHeaders(), $max_col_lengths));
 
-        $output .= "\n";
+        $output .= trim($header_row) . "\n";
 
         // append '-' character for each max_col_lengths value (repeat) with two spaces in between each column
-        $output .= implode('  ', array_map(function ($length) {
+        $output .= implode('  ', array_map(static function ($length) {
             return str_repeat('-', $length);
         }, $max_col_lengths));
 

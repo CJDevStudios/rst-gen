@@ -17,8 +17,16 @@ class Row
         //Ex: $values = ['header1' => 'value1', 'header2' => 'value2']
         //Ex 2: $values = ['value1', 'value2']
         //Normalize as 1d array and store index -> key maps in $cell_header_keys
-        $this->cells = array_values($values);
-        $this->cell_header_keys = array_keys($values);
+        //$this->cells = array_values($values);
+
+        // convert all values in $values that are arrays to strings and store all in $cells
+        foreach ($values as $key => $value) {
+            if (is_array($value)) {
+                $value = '['.implode(', ', $value).']';
+            }
+            $this->cells[] = $value;
+            $this->cell_header_keys[count($this->cells) - 1] = $key;
+        }
     }
 
     public function getCells()
