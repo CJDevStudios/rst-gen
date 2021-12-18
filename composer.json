@@ -1,0 +1,35 @@
+{
+    "name": "cjdevstudios/rst-gen",
+    "description": "RST Generator",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "CJDevStudios\\RSTGen\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CJDevStudios\\RSTGen\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Curtis Conard",
+            "email": "cconard@cjdevstudios.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "platform": {
+        "php": "~7.4.0 | ~8.0.0"
+    },
+    "require": {
+        "php": "~7.4.0 | ~8.0.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~9.5.0"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit tests"
+    }
+}
