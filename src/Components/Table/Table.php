@@ -43,7 +43,7 @@ class Table implements ComponentInterface
         }
 
         foreach ($this->body_rows as $body_row) {
-            $max_length = max($max_length, strlen($body_row->getCells()[$col] ?? ''));
+            $max_length = max($max_length, strlen($body_row->getCellByHeaderKey($col) ?? ''));
         }
 
         return $max_length;

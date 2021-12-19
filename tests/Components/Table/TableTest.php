@@ -78,6 +78,34 @@ EOT;
         $this->assertEquals($expected, $output);
     }
 
+    public function testRenderNamedWithArrayValue()
+    {
+        $table = new Table();
+        $table->addHeaderRow(new HeaderRow([
+            'name' => 'Name',
+            'description' => 'Description',
+            'required' => 'Required',
+            'default' => 'Default'
+        ]));
+        $table->addBodyRow(new Row([
+            'name' => 'directory',
+            'description' => 'Plugin directory',
+            'required' => 'No',
+            'default' => ['test1', 'test2']
+        ]));
+
+        $output = $table->renderSimple();
+        $expected = <<<EOT
+=========  ================  ========  ==============
+Name       Description       Required  Default
+---------  ----------------  --------  --------------
+directory  Plugin directory  No        [test1, test2]
+=========  ================  ========  ==============
+EOT;
+
+        $this->assertEquals($expected, $output);
+    }
+
     public function testRenderAlias()
     {
         $table = new Table();
