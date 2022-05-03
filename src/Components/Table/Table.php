@@ -13,12 +13,12 @@ class Table implements ComponentInterface
     /**
      * @var HeaderRow[]
      */
-    private array $header_rows = [];
+    protected array $header_rows = [];
 
     /**
      * @var Row[]
      */
-    private array $body_rows = [];
+    protected array $body_rows = [];
 
     public function __construct()
     {
@@ -50,11 +50,6 @@ class Table implements ComponentInterface
     }
 
     public function render(array $options = []): string
-    {
-        return $this->renderSimple();
-    }
-
-    public function renderSimple()
     {
         $output = '';
 
@@ -89,7 +84,7 @@ class Table implements ComponentInterface
 
         // append body rows; aligning each cell to the start of the column
         foreach ($this->body_rows as $body_row) {
-            $row = implode('  ', array_map(function ($cell, $length) {
+            $row = implode('  ', array_map(static function ($cell, $length) {
                 return str_pad($cell, $length, ' ', STR_PAD_RIGHT);
             }, $body_row->getCells(), $max_col_lengths));
 
@@ -97,7 +92,7 @@ class Table implements ComponentInterface
         }
 
         // append '-' character for each max_col_lengths value (repeat) with two spaces in between each column
-        $output .= implode('  ', array_map(function ($length) {
+        $output .= implode('  ', array_map(static function ($length) {
             return str_repeat('=', $length);
         }, $max_col_lengths));
 
